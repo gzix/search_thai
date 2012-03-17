@@ -1,5 +1,5 @@
 name = "Search Thai"
-description = "Integrates simple <strong>Thai</strong> handling with core search module."
+description = "Integrates simple <strong>Thai</strong> handling with Drupal core search module."
 package = Search
 version = VERSION
 core = 7.x
