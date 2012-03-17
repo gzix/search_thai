@@ -1,8 +1,8 @@
 <?php
 /**
  * @file
- * search_thai.module integrates & improves Thai content searching
- * for core search module.
+ * search_thai.module integrates & improves Thai contents searching
+ * for Drupal core search module.
  */
 
 /**
