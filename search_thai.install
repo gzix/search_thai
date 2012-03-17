@@ -1,0 +1,12 @@
+<?php
+/**
+ * @file
+ * Install, update and uninstall functions for the search_thai module.
+ */
+
+/**
+ * Implements hook_uninstall().
+ */
+function search_thai_uninstall() {
+  variable_del('overlap_th');
+}
