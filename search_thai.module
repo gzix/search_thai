@@ -24,7 +24,7 @@ define('PREG_CLASS_TH_WORD_BACK_BOUNDARY', '\x{0E30}\x{0E33}\x{0E2F}\x{0E45}-\x{
 // Thai tone-marks & some special characters can be omitted from search index.
 define('PREG_CLASS_TH_OMIT', '\x{0E47}-\x{0E4F}');
 
-// Thai characters which can't be the begining of the words.
+// Thai characters which can't be the begining of the words (not yet useful for the moment).
 define('PREG_CLASS_TH_NOT_FIRST', '\x{0E2F}-\x{0E3A}\x{0E45}-\x{0E4F}\x{0E5A}-\x{0E5B}');
 
 /**
@@ -56,7 +56,7 @@ function search_thai_search_preprocess($str) {
 
     // Add space before front vowel
     $str = preg_replace('/[' . PREG_CLASS_TH_VOWEL_FRONT . ']+/u', ' $0', $str);
-  
+
     // Remove unnecessary characters for indexing
     $str = preg_replace('/[' . PREG_CLASS_TH_OMIT . ']+/u', '', $str);
 
@@ -84,7 +84,7 @@ function search_expand_th($matches) {
   // Build a FIFO queue of characters.
   $chars = array();
 
-	for ($i = 0; $i < $length; $i++) {
+  for ($i = 0; $i < $length; $i++) {
     // Add the next character off the beginning of the string to the queue.
     $current = drupal_substr($str, 0, 1);
     $str = substr($str, strlen($current));
