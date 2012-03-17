@@ -3,15 +3,12 @@
  * @file
  * search_thai.module integrates & improves Thai contents searching
  * for Drupal core search module.
- */
-
-/**
- * Define Thai unicode range classes
- * Thai Unicode range 0E00-0E7F.
+ *
+ * Thai unicode range reference.
  * @see http://unicode.org/charts/PDF/U0E00.pdf
  */
 
-// All Thai characters or simply use \p{Thai}
+// Thai unicode range is 0E00-0E7F or simply use \p{Thai}
 define('PREG_CLASS_TH', '\x{0E00}-\x{0E7F}');
 
 // Thai front vowel สระหน้า: เอ แอ โอ ใอ ไอ
@@ -29,9 +26,10 @@ define('PREG_CLASS_TH_NOT_FIRST', '\x{0E2F}-\x{0E3A}\x{0E45}-\x{0E4F}\x{0E5A}-\x
 
 /**
  * Implements hook_form_FORM_ID_alter().
+ *
+ * Add a checkbox to search admin settings form.
  */
 function search_thai_form_search_admin_settings_alter(&$form, &$form_state, $form_id) {
-  // Add a checkbox to search admin settings form.
   $form['indexing_settings']['overlap_th'] = array(
     '#type' => 'checkbox',
     '#title' => t('Simple Thai handling'),
@@ -43,9 +41,13 @@ function search_thai_form_search_admin_settings_alter(&$form, &$form_state, $for
 /**
  * Implements hook_search_preprocess().
  *
- * Note: The better way to correctly split Thai words is to use external dictionaries
- * but that's not the purpose of this simple module (at the moment).
- * @see search_simplify()
+ * Replace and filter out some Thai characters 
+ * which can be use as word boundary with regular expression.
+ *
+ * @param $str
+ *
+ * @return
+ *   Tokenized text which ready for search indexing.
  */
 function search_thai_search_preprocess($str) {
 
@@ -68,6 +70,16 @@ function search_thai_search_preprocess($str) {
   return $str;
 }
 
+/**
+ * Splits Thai text into tokens.
+ *
+ * @param $matches
+ *
+ * @return
+ *   Tokenized text, starting and ending with a space character.
+ *
+ * @see search_expand_cjk() for example.
+ */
 function search_expand_th($matches) {
 
   $min = variable_get('minimum_word_size', 3);
