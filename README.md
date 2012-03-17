@@ -1,6 +1,6 @@
 การตั้งค่า
 ==========
-คุณมี 2 ทางเลือก ใช้ Drush หรือ Drupal UI
+สำหรับ Drupal 7 เท่านั้น (ณ เวลานี้) คุณมี 2 ทางเลือก โดยใช้ Drush หรือ Drupal UI
 
 Drush commands
 ------------------
@@ -23,7 +23,7 @@ Drupal UI
 
 CONFIGURATION
 =============
-You have 2 options via Drush or Drupal UI
+For Drupal 7 only (at the moment). You have 2 options via Drush or Drupal UI.
 
 Drush commands
 ------------------
