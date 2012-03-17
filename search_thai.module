@@ -45,6 +45,9 @@ function search_thai_form_search_admin_settings_alter(&$form, &$form_state, $for
  * which can be use as word boundary with regular expression.
  *
  * @param $str
+ *   $str is sequence of Thai characters,
+ *   it can be anything from a single character to full sentence(s)
+ *   because Thai writing system has no space between words
  *
  * @return
  *   Tokenized text which ready for search indexing.
@@ -74,6 +77,9 @@ function search_thai_search_preprocess($str) {
  * Splits Thai text into tokens.
  *
  * @param $matches
+ *   $matches is an array of regular expression matches, 
+ *   which means that $matches[0] contains the matched text 
+ *   or a single string of Thai characters to tokenize.
  *
  * @return
  *   Tokenized text, starting and ending with a space character.
